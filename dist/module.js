@@ -59973,7 +59973,7 @@ var processData = function processData(data) {
     if (row.name.startsWith('num')) {
       yStore[row.name.split('num')[1]] = row.fields[0].values.buffer.slice(-1)[0];
     } else {
-      xStore[row.name] = row.fields[0].values.buffer.slice(-1)[0];
+      xStore[row.name] = Math.round(row.fields[0].values.buffer.slice(-1)[0] / 6) / 10;
     }
   });
   Object.keys(xStore).map(function (store) {
