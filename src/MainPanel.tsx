@@ -30,7 +30,15 @@ export class MainPanel extends PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {}
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.data.series !== this.props.data.series) {
+      if (this.props.data.series.length > 0) {
+        const series = this.props.data.series as Array<Frame>;
+        const result = processData(series);
+        this.setState({ data: result });
+      }
+    }
+  }
 
   render() {
     const { width, height } = this.props;

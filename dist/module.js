@@ -59824,7 +59824,17 @@ function (_super) {
     }
   };
 
-  MainPanel.prototype.componentDidUpdate = function (prevProps) {};
+  MainPanel.prototype.componentDidUpdate = function (prevProps) {
+    if (prevProps.data.series !== this.props.data.series) {
+      if (this.props.data.series.length > 0) {
+        var series = this.props.data.series;
+        var result = Object(_util_process__WEBPACK_IMPORTED_MODULE_3__["processData"])(series);
+        this.setState({
+          data: result
+        });
+      }
+    }
+  };
 
   MainPanel.prototype.render = function () {
     var _a = this.props,
