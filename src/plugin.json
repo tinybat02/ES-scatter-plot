@@ -1,0 +1,21 @@
+{
+  "type": "panel",
+  "name": "ES Scatter pl",
+  "id": "id-es-scatter-plot",
+  "dataFormats": ["table"],
+  "info": {
+    "description": "ES Scatter Plot",
+    "author": {
+      "name": "Nam Le"
+    },
+    "keywords": [],
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "6.3.x",
+    "plugins": []
+  }
+}
