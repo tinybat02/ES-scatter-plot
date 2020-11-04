@@ -1,6 +1,6 @@
 import { Frame } from '../types';
 
-export const processData = (data: Array<Frame>) => {
+export const processData = (data: Array<Frame>, area: { [key: string]: number }) => {
   const result: Array<{ id: string; data: Array<{ x: number; y: number }> }> = [];
 
   const xStore: { [key: string]: number } = {};
@@ -16,8 +16,11 @@ export const processData = (data: Array<Frame>) => {
   });
 
   Object.keys(xStore).map(store => {
-    if (yStore[store]) {
-      result.push({ id: store, data: [{ x: xStore[store], y: yStore[store] }] });
+    if (yStore[store] && area[store]) {
+      result.push({
+        id: store,
+        data: [{ x: xStore[store], y: Math.round((yStore[store] / area[store]) * 100) / 100 }],
+      });
     }
   });
 

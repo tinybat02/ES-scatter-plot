@@ -23,18 +23,18 @@ export class MainPanel extends PureComponent<Props, State> {
     data: [],
   };
   componentDidMount() {
-    if (this.props.data.series.length > 0) {
+    if (this.props.data.series.length > 0 && this.props.options.flat_area) {
       const series = this.props.data.series as Array<Frame>;
-      const result = processData(series);
+      const result = processData(series, this.props.options.flat_area);
       this.setState({ data: result });
     }
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.data.series !== this.props.data.series) {
-      if (this.props.data.series.length > 0) {
+      if (this.props.data.series.length > 0 && this.props.options.flat_area) {
         const series = this.props.data.series as Array<Frame>;
-        const result = processData(series);
+        const result = processData(series, this.props.options.flat_area);
         this.setState({ data: result });
       }
     }
@@ -60,7 +60,7 @@ export class MainPanel extends PureComponent<Props, State> {
           }}
           yScale={{ type: 'linear', min: 0, max: 'auto' }}
           yFormat={function(e) {
-            return e + ' people';
+            return e + ' people/m2';
           }}
           blendMode="multiply"
           axisTop={null}
@@ -96,9 +96,9 @@ export class MainPanel extends PureComponent<Props, State> {
             >
               <strong>{node.id.split('.')[0]}</strong>
               <br />
-              {`x: ${node.data.formattedX}`}
-              <br />
               {`y: ${node.data.formattedY}`}
+              <br />
+              {`x: ${node.data.formattedX}`}
             </div>
           )}
         />

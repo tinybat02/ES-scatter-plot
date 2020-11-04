@@ -16,6 +16,7 @@
     "@grafana/ui": "next"
   },
   "dependencies": {
-    "@nivo/scatterplot": "^0.63.1"
+    "@nivo/scatterplot": "^0.63.1",
+    "react-dropzone": "^11.2.3"
   }
 }

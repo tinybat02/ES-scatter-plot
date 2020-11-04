@@ -1,8 +1,12 @@
 import { DataFrame, Field, Vector } from '@grafana/data';
 
-export interface PanelOptions {}
+export interface PanelOptions {
+  flat_area: { [key: string]: number } | null;
+}
 
-export const defaults: PanelOptions = {};
+export const defaults: PanelOptions = {
+  flat_area: null,
+};
 
 export interface Buffer extends Vector {
   buffer: any;
