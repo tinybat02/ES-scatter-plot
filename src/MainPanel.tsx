@@ -53,7 +53,7 @@ export class MainPanel extends PureComponent<Props, State> {
         <ResponsiveScatterPlot
           data={data}
           colors={getRandomColor}
-          margin={{ top: 50, right: 50, bottom: 70, left: 90 }}
+          margin={{ top: 80, right: 50, bottom: 70, left: 90 }}
           xScale={{ type: 'linear', min: 0, max: 'auto' }}
           xFormat={function(e) {
             return e + ' min';

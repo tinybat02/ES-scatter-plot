@@ -61564,7 +61564,7 @@ function (_super) {
       data: data,
       colors: getRandomColor,
       margin: {
-        top: 50,
+        top: 80,
         right: 50,
         bottom: 70,
         left: 90
