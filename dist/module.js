@@ -61602,7 +61602,7 @@ function (_super) {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'Number of Customers',
+        legend: 'Number of Customers/m2',
         legendPosition: 'middle',
         legendOffset: -60
       },
