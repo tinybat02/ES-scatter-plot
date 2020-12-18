@@ -73338,7 +73338,7 @@ var MainEditor = function MainEditor(_a) {
   }))) : ''))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "btn btn-primary",
     onClick: onSubmit
-  }, "Submit"));
+  }, "Set Filename"));
 };
 
 /***/ }),

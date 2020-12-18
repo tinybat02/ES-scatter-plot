@@ -124,7 +124,7 @@ export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, 
         </div>
       </div>
       <button className="btn btn-primary" onClick={onSubmit}>
-        Submit
+        Set Filename
       </button>
     </PanelOptionsGroup>
   );
