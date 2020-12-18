@@ -1,10 +1,12 @@
-import { Frame } from '../types';
+import { Frame, CSVRow } from '../types';
 
 export const processData = (data: Array<Frame>, area: { [key: string]: number }) => {
   const result: Array<{ id: string; data: Array<{ x: number; y: number }> }> = [];
 
   const xStore: { [key: string]: number } = {};
   const yStore: { [key: string]: number } = {};
+  const csvData: Array<CSVRow> = [];
+
   data.map(row => {
     if (!row.name) return;
 
@@ -17,12 +19,14 @@ export const processData = (data: Array<Frame>, area: { [key: string]: number })
 
   Object.keys(xStore).map(store => {
     if (yStore[store] && area[store]) {
+      const yValue = Math.round((yStore[store] / area[store]) * 100) / 100;
+      csvData.push({ Store: store, 'People/m2': xStore[store], 'Duration (min)': yValue });
       result.push({
         id: store,
-        data: [{ x: xStore[store], y: Math.round((yStore[store] / area[store]) * 100) / 100 }],
+        data: [{ x: xStore[store], y: yValue }],
       });
     }
   });
 
-  return result;
+  return { result, csvData };
 };

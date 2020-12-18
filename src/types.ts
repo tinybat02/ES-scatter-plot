@@ -2,10 +2,12 @@ import { DataFrame, Field, Vector } from '@grafana/data';
 
 export interface PanelOptions {
   flat_area: { [key: string]: number } | null;
+  filename: string;
 }
 
 export const defaults: PanelOptions = {
   flat_area: null,
+  filename: '',
 };
 
 export interface Buffer extends Vector {
@@ -18,4 +20,9 @@ export interface FieldBuffer extends Field<any, Vector> {
 
 export interface Frame extends DataFrame {
   fields: FieldBuffer[];
+}
+export interface CSVRow {
+  Store: string;
+  'People/m2': number;
+  'Duration (min)': number;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { PanelOptionsGroup } from '@grafana/ui';
+//@ts-ignore
+import { FormField, PanelOptionsGroup } from '@grafana/ui';
 import { PanelEditorProps } from '@grafana/data';
 import { PanelOptions } from './types';
 import { useDropzone } from 'react-dropzone';
@@ -26,6 +27,11 @@ const baseStyle: React.CSSProperties = {
 
 export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, onOptionsChange }) => {
   const [myFiles, setMyFiles] = useState<File[]>([]);
+  const [filename, setFilename] = useState(options.filename);
+
+  const onSubmit = () => {
+    onOptionsChange({ ...options, filename });
+  };
 
   const onDrop = React.useCallback(
     acceptedFiles => {
@@ -70,40 +76,56 @@ export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, 
 
   return (
     <PanelOptionsGroup>
-      <div className="section gf-form-group">
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <h5 className="section-heading" style={{ marginTop: 7 }}>
-            Drop Store Area File
-          </h5>
-          {options.flat_area ? <img src={Exists} /> : <img src={None} />}
+      <div className="editor-row">
+        <div className="section gf-form-group">
+          <h5 className="section-heading">Set File Name</h5>
+          <FormField
+            label="File Name"
+            labelWidth={10}
+            inputWidth={40}
+            type="text"
+            value={filename}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilename(e.target.value)}
+          />
         </div>
-        <section>
-          <div {...getRootProps({ className: 'dropzone', style: baseStyle })}>
-            <input {...getInputProps()} />
-            <p>Drag 'n' drop Area File here, or click to select file</p>
+        <div className="section gf-form-group">
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <h5 className="section-heading" style={{ marginTop: 7 }}>
+              Drop Store Area File
+            </h5>
+            {options.flat_area ? <img src={Exists} /> : <img src={None} />}
           </div>
-          {myFiles.length > 0 ? (
-            <div>
-              <h4>Files</h4>
-              <div>
-                {myFiles.map(file => (
-                  <p key={file.name}>
-                    {file.name} ({file.size} bytes)
-                    <button onClick={() => handleRemoveFile(file.name)}>
-                      <img src={DeleteIcon} />
-                    </button>
-                    <button onClick={() => addJSON(file.name)}>
-                      <img src={CheckIcon} />
-                    </button>
-                  </p>
-                ))}
-              </div>
+          <section>
+            <div {...getRootProps({ className: 'dropzone', style: baseStyle })}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop Area File here, or click to select file</p>
             </div>
-          ) : (
-            ''
-          )}
-        </section>
+            {myFiles.length > 0 ? (
+              <div>
+                <h4>Files</h4>
+                <div>
+                  {myFiles.map(file => (
+                    <p key={file.name}>
+                      {file.name} ({file.size} bytes)
+                      <button onClick={() => handleRemoveFile(file.name)}>
+                        <img src={DeleteIcon} />
+                      </button>
+                      <button onClick={() => addJSON(file.name)}>
+                        <img src={CheckIcon} />
+                      </button>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+          </section>
+        </div>
       </div>
+      <button className="btn btn-primary" onClick={onSubmit}>
+        Submit
+      </button>
     </PanelOptionsGroup>
   );
 };
