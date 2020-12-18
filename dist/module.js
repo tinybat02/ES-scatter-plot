@@ -73686,8 +73686,8 @@ var processData = function processData(data, area) {
       var yValue = Math.round(yStore[store] / area[store] * 100) / 100;
       csvData.push({
         Store: store,
-        'People/m2': xStore[store],
-        'Duration (min)': yValue
+        'People/m2': yValue,
+        'Duration (min)': xStore[store]
       });
       result.push({
         id: store,
