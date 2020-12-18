@@ -73687,7 +73687,7 @@ var processData = function processData(data, area) {
       csvData.push({
         Store: store,
         'People/m2': yValue,
-        'Duration (min)': xStore[store]
+        'Timespent (min)': xStore[store]
       });
       result.push({
         id: store,
