@@ -42424,7 +42424,7 @@ exports.default = function (file, acceptedFiles) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(true);
 // Module
-exports.push([module.i, ".pane {\n  line-height: 28px;\n  color: #fff;\n  z-index: 10;\n  position: absolute;\n  top: 15px;\n  right: 15px;\n  /* padding: 0px 10px 0px 10px; */ }\n\n.pane:hover {\n  cursor: pointer; }\n", "",{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,WAAW;EACX,WAAW;EACX,kBAAkB;EAClB,SAAS;EACT,WAAW;EACX,gCAAgC,EAAE;;AAEpC;EACE,eAAe,EAAE","file":"main.css","sourcesContent":[".pane {\n  line-height: 28px;\n  color: #fff;\n  z-index: 10;\n  position: absolute;\n  top: 15px;\n  right: 15px;\n  /* padding: 0px 10px 0px 10px; */ }\n\n.pane:hover {\n  cursor: pointer; }\n"]}]);
+exports.push([module.i, ".scatter-pane {\n  line-height: 28px;\n  color: #fff;\n  z-index: 10;\n  position: absolute;\n  top: 15px;\n  right: 15px;\n  /* padding: 0px 10px 0px 10px; */ }\n\n.scatter-pane:hover {\n  cursor: pointer; }\n", "",{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,WAAW;EACX,WAAW;EACX,kBAAkB;EAClB,SAAS;EACT,WAAW;EACX,gCAAgC,EAAE;;AAEpC;EACE,eAAe,EAAE","file":"main.css","sourcesContent":[".scatter-pane {\n  line-height: 28px;\n  color: #fff;\n  z-index: 10;\n  position: absolute;\n  top: 15px;\n  right: 15px;\n  /* padding: 0px 10px 0px 10px; */ }\n\n.scatter-pane:hover {\n  cursor: pointer; }\n"]}]);
 // Exports
 module.exports = exports;
 
@@ -73458,7 +73458,7 @@ function (_super) {
         height: height
       }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-      className: "pane",
+      className: "scatter-pane",
       src: _img_save_icon_svg__WEBPACK_IMPORTED_MODULE_5___default.a,
       onClick: this.onDownload
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_nivo_scatterplot__WEBPACK_IMPORTED_MODULE_2__["ResponsiveScatterPlot"], {

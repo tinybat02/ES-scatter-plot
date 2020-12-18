@@ -1,4 +1,4 @@
-.pane {
+.scatter-pane {
   line-height: 28px;
   color: #fff;
   z-index: 10;
@@ -8,6 +8,6 @@
   /* padding: 0px 10px 0px 10px; */
 }
 
-.pane:hover {
+.scatter-pane:hover {
   cursor: pointer;
 }

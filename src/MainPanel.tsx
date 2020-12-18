@@ -65,7 +65,7 @@ export class MainPanel extends PureComponent<Props, State> {
         }}
       >
         <img
-          className="pane"
+          className="scatter-pane"
           src={Icon}
           onClick={this.onDownload}
           // style={{ position: 'absolute', top: 0, right: 2, zIndex: 2 }}
