@@ -73488,7 +73488,7 @@ function (_super) {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'Duration Spent',
+        legend: 'Duration Spent/m2',
         legendPosition: 'middle',
         legendOffset: 46
       },
