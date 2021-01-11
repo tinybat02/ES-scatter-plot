@@ -24,5 +24,5 @@ export interface Frame extends DataFrame {
 export interface CSVRow {
   Store: string;
   'People/m2': number;
-  'Timespent (min)': number;
+  'Timespent (min)/m2': number;
 }

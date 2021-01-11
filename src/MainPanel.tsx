@@ -4,7 +4,7 @@ import { PanelOptions, Frame, CSVRow } from 'types';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 import useCsvDownloader from 'use-csv-downloader';
 import { processData } from './util/process';
-import Icon from './img/save_icon.svg';
+// import Icon from './img/save_icon.svg';
 import './css/main.css';
 
 interface Props extends PanelProps<PanelOptions> {}
@@ -64,19 +64,14 @@ export class MainPanel extends PureComponent<Props, State> {
           height,
         }}
       >
-        <img
-          className="scatter-pane"
-          src={Icon}
-          onClick={this.onDownload}
-          // style={{ position: 'absolute', top: 0, right: 2, zIndex: 2 }}
-        />
+        {/* <img className="scatter-pane" src={Icon} onClick={this.onDownload} /> */}
         <ResponsiveScatterPlot
           data={data}
           colors={getRandomColor}
           margin={{ top: 80, right: 50, bottom: 70, left: 90 }}
           xScale={{ type: 'linear', min: 0, max: 'auto' }}
           xFormat={function(e) {
-            return e + ' min';
+            return e + ' min/m2';
           }}
           yScale={{ type: 'linear', min: 0, max: 'auto' }}
           yFormat={function(e) {
@@ -114,7 +109,7 @@ export class MainPanel extends PureComponent<Props, State> {
                 zIndex: 10,
               }}
             >
-              <strong>{node.id.split('.')[0]}</strong>
+              <strong>{node.id.replace('.0', '')}</strong>
               <br />
               {`y: ${node.data.formattedY}`}
               <br />

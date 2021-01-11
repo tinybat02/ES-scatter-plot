@@ -20,10 +20,11 @@ export const processData = (data: Array<Frame>, area: { [key: string]: number })
   Object.keys(xStore).map(store => {
     if (yStore[store] && area[store]) {
       const yValue = Math.round((yStore[store] / area[store]) * 100) / 100;
-      csvData.push({ Store: store, 'People/m2': yValue, 'Timespent (min)': xStore[store] });
+      const xValue = Math.round((xStore[store] / area[store]) * 10000) / 10000;
+      // csvData.push({ Store: store, 'People/m2': yValue, 'Timespent (min)/m2': xValue });
       result.push({
         id: store,
-        data: [{ x: xStore[store], y: yValue }],
+        data: [{ x: xValue, y: yValue }],
       });
     }
   });

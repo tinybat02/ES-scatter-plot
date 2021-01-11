@@ -73360,15 +73360,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var use_csv_downloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-csv-downloader */ "../node_modules/use-csv-downloader/src/use-csv-downloader.js");
 /* harmony import */ var use_csv_downloader__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_csv_downloader__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _util_process__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/process */ "./util/process.ts");
-/* harmony import */ var _img_save_icon_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./img/save_icon.svg */ "./img/save_icon.svg");
-/* harmony import */ var _img_save_icon_svg__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_img_save_icon_svg__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./css/main.css */ "./css/main.css");
-/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css/main.css */ "./css/main.css");
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
-
+ // import Icon from './img/save_icon.svg';
 
 
 
@@ -73457,11 +73455,7 @@ function (_super) {
         width: width,
         height: height
       }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-      className: "scatter-pane",
-      src: _img_save_icon_svg__WEBPACK_IMPORTED_MODULE_5___default.a,
-      onClick: this.onDownload
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_nivo_scatterplot__WEBPACK_IMPORTED_MODULE_2__["ResponsiveScatterPlot"], {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_nivo_scatterplot__WEBPACK_IMPORTED_MODULE_2__["ResponsiveScatterPlot"], {
       data: data,
       colors: getRandomColor,
       margin: {
@@ -73476,7 +73470,7 @@ function (_super) {
         max: 'auto'
       },
       xFormat: function xFormat(e) {
-        return e + ' min';
+        return e + ' min/m2';
       },
       yScale: {
         type: 'linear',
@@ -73518,7 +73512,7 @@ function (_super) {
             border: "2px solid " + node.style.color,
             zIndex: 10
           }
-        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, node.id.split('.')[0]), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "y: " + node.data.formattedY, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "x: " + node.data.formattedX);
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, node.id.replace('.0', '')), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "y: " + node.data.formattedY, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "x: " + node.data.formattedX);
       }
     }));
   };
@@ -73605,17 +73599,6 @@ module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5v
 
 /***/ }),
 
-/***/ "./img/save_icon.svg":
-/*!***************************!*\
-  !*** ./img/save_icon.svg ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE5IDEydjdINXYtN0gzdjdjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnYtN2gtMnptLTYgLjY3bDIuNTktMi41OEwxNyAxMS41bC01IDUtNS01IDEuNDEtMS40MUwxMSAxMi42N1YzaDJ6Ii8+PC9zdmc+"
-
-/***/ }),
-
 /***/ "./module.ts":
 /*!*******************!*\
   !*** ./module.ts ***!
@@ -73684,15 +73667,12 @@ var processData = function processData(data, area) {
   Object.keys(xStore).map(function (store) {
     if (yStore[store] && area[store]) {
       var yValue = Math.round(yStore[store] / area[store] * 100) / 100;
-      csvData.push({
-        Store: store,
-        'People/m2': yValue,
-        'Timespent (min)': xStore[store]
-      });
+      var xValue = Math.round(xStore[store] / area[store] * 10000) / 10000; // csvData.push({ Store: store, 'People/m2': yValue, 'Timespent (min)/m2': xValue });
+
       result.push({
         id: store,
         data: [{
-          x: xStore[store],
+          x: xValue,
           y: yValue
         }]
       });
