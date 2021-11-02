@@ -13,7 +13,8 @@
   "devDependencies": {
     "@grafana/data": "next",
     "@grafana/toolkit": "next",
-    "@grafana/ui": "next"
+    "@grafana/ui": "next",
+    "tslib": "^2.3.1"
   },
   "dependencies": {
     "@nivo/core": "^0.67.0",

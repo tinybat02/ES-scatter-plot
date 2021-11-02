@@ -27,10 +27,24 @@ const baseStyle: React.CSSProperties = {
 
 export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, onOptionsChange }) => {
   const [myFiles, setMyFiles] = useState<File[]>([]);
-  const [filename, setFilename] = useState(options.filename);
+  const [inputs, setInputs] = useState(options);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type } = e.target;
+
+    if (type == 'checkbox') {
+      setInputs(prevState => ({ ...prevState, enableDownload: !inputs.enableDownload }));
+      return;
+    }
+
+    setInputs(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const onSubmit = () => {
-    onOptionsChange({ ...options, filename });
+    onOptionsChange({ ...options, ...inputs });
   };
 
   const onDrop = React.useCallback(
@@ -84,9 +98,20 @@ export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, 
             labelWidth={10}
             inputWidth={40}
             type="text"
-            value={filename}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilename(e.target.value)}
+            name="filename"
+            value={inputs.filename}
+            onChange={handleChange}
           />
+          <div style={{ padding: '5px 7px' }}>
+            <input
+              type="checkbox"
+              checked={inputs.enableDownload}
+              name="enableDownload"
+              onChange={handleChange}
+              style={{ width: 15, height: 15, marginRight: 20 }}
+            />
+            <label>Enable Download CSV</label>
+          </div>
         </div>
         <div className="section gf-form-group">
           <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -124,7 +149,7 @@ export const MainEditor: React.FC<PanelEditorProps<PanelOptions>> = ({ options, 
         </div>
       </div>
       <button className="btn btn-primary" onClick={onSubmit}>
-        Set Filename
+        Save Changes
       </button>
     </PanelOptionsGroup>
   );
