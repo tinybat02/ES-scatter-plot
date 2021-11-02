@@ -3,11 +3,13 @@ import { DataFrame, Field, Vector } from '@grafana/data';
 export interface PanelOptions {
   flat_area: { [key: string]: number } | null;
   filename: string;
+  enableDownload: boolean;
 }
 
 export const defaults: PanelOptions = {
   flat_area: null,
   filename: '',
+  enableDownload: false,
 };
 
 export interface Buffer extends Vector {
@@ -23,6 +25,6 @@ export interface Frame extends DataFrame {
 }
 export interface CSVRow {
   Store: string;
-  'People/m2': number;
-  'Timespent (min)/m2': number;
+  'People/m2': string;
+  'Timespent (min)/m2': string;
 }

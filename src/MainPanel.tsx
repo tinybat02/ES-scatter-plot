@@ -4,7 +4,7 @@ import { PanelOptions, Frame, CSVRow } from 'types';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 import useCsvDownloader from 'use-csv-downloader';
 import { processData } from './util/process';
-// import Icon from './img/save_icon.svg';
+import Icon from './img/save_icon.svg';
 import './css/main.css';
 
 interface Props extends PanelProps<PanelOptions> {}
@@ -50,12 +50,16 @@ export class MainPanel extends PureComponent<Props, State> {
 
   onDownload = () => {
     const { filename } = this.props.options;
-    const downloadCsv = useCsvDownloader({ quote: '', delimiter: ',' });
+    const downloadCsv = useCsvDownloader({ quote: '', delimiter: ';' });
     downloadCsv(this.state.csvData, `${filename}.csv`);
   };
 
   render() {
-    const { width, height } = this.props;
+    const {
+      width,
+      height,
+      options: { enableDownload },
+    } = this.props;
     const { data } = this.state;
     return (
       <div
@@ -64,7 +68,7 @@ export class MainPanel extends PureComponent<Props, State> {
           height,
         }}
       >
-        {/* <img className="scatter-pane" src={Icon} onClick={this.onDownload} /> */}
+        {enableDownload && <img className="scatter-pane" src={Icon} onClick={this.onDownload} />}
         <ResponsiveScatterPlot
           data={data}
           colors={getRandomColor}
