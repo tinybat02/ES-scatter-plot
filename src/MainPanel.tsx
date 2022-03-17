@@ -72,7 +72,7 @@ export class MainPanel extends PureComponent<Props, State> {
         <ResponsiveScatterPlot
           data={data}
           colors={getRandomColor}
-          margin={{ top: 80, right: 50, bottom: 70, left: 90 }}
+          margin={{ top: 80, right: 170, bottom: 70, left: 90 }}
           xScale={{ type: 'linear', min: 0, max: 'auto' }}
           xFormat={function(e) {
             return e + ' min/m2';
@@ -120,6 +120,29 @@ export class MainPanel extends PureComponent<Props, State> {
               {`x: ${node.data.formattedX}`}
             </div>
           )}
+          legends={[
+            {
+              anchor: 'bottom-right',
+              direction: 'column',
+              justify: false,
+              translateX: 130,
+              translateY: 0,
+              itemWidth: 100,
+              itemHeight: 12,
+              itemsSpacing: 5,
+              itemDirection: 'left-to-right',
+              symbolSize: 12,
+              symbolShape: 'circle',
+              effects: [
+                {
+                  on: 'hover',
+                  style: {
+                    itemOpacity: 1,
+                  },
+                },
+              ],
+            },
+          ]}
         />
       </div>
     );
